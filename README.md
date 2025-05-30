@@ -8,13 +8,8 @@
 
 ### Installation & Execution
 ```bash
-git clone [https://github.com/JGold97/ds_code_challenge.git]
+git clone https://github.com/JGold97/ds_code_challenge.git
 cd ds_code_challenge
-python -m venv venv
-# Windows:
-venv\Scripts\activate
-# macOS/Linux:
-source venv/bin/activate
 pip install -r requirements.txt
 python scripts/main.py
 ```
