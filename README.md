@@ -8,7 +8,7 @@
 
 ### Installation & Execution
 ```bash
-git clone [your-repo-url]
+git clone [https://github.com/JGold97/ds_code_challenge.git]
 cd "CCT - Data Engineer Code Challenge"
 python -m venv venv
 # Windows:
