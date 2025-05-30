@@ -9,6 +9,9 @@ def download_data_files():
     """Download all the data files we need"""
     print("Downloading data files...")
     
+    import os
+    os.makedirs('data', exist_ok=True)
+    
     # Set up anonymous S3 client
     s3_client = boto3.client(
         's3',
