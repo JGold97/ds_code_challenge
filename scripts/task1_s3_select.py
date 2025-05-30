@@ -9,6 +9,7 @@ def download_data_files():
     """Download all the data files we need"""
     print("Downloading data files...")
     
+    # Create data directory first
     import os
     os.makedirs('data', exist_ok=True)
     
@@ -30,6 +31,9 @@ def download_data_files():
     for s3_key, local_path in files_to_download.items():
         try:
             start_time = time.time()
+            # Remove existing file if it exists
+            if os.path.exists(local_path):
+                os.remove(local_path)
             s3_client.download_file(
                 'cct-ds-code-challenge-input-data',
                 s3_key,
@@ -39,7 +43,6 @@ def download_data_files():
             print(f"Downloaded {s3_key} in {end_time - start_time:.2f} seconds")
         except Exception as e:
             print(f"Failed to download {s3_key}: {e}")
-
 def simulate_s3_select():
     """
     Simulate S3 SELECT functionality by loading the GeoJSON file locally
