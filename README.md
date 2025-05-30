@@ -9,7 +9,7 @@
 ### Installation & Execution
 ```bash
 git clone [https://github.com/JGold97/ds_code_challenge.git]
-cd "CCT - Data Engineer Code Challenge"
+cd ds_code_challenge
 python -m venv venv
 # Windows:
 venv\Scripts\activate
