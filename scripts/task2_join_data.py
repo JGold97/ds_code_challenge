@@ -171,3 +171,24 @@ if __name__ == "__main__":
         logger.info("Task 2 completed successfully!")
     else:
         logger.error("Task 2 failed!")
+
+if __name__ == "__main__":
+    # Run the main joining process
+    result_df = join_service_requests_with_h3()
+    
+    if result_df is not None:
+        # CREATE DATA DIRECTORY IF IT DOESN'T EXIST
+        import os
+        os.makedirs('data', exist_ok=True)
+        
+        # Save the results
+        output_path = 'data/sr_with_h3_indices.csv.gz'
+        result_df.to_csv(output_path, compression='gzip', index=False)
+        logger.info(f"Results saved to {output_path}")
+        
+        # Validate against provided data
+        validate_against_provided_data(result_df)
+        
+        logger.info("Task 2 completed successfully!")
+    else:
+        logger.error("Task 2 failed!")
