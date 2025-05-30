@@ -11,14 +11,11 @@ def download_data_files():
     
     # Create data directory first
     import os
+    import requests
     os.makedirs('data', exist_ok=True)
     
-    # Set up anonymous S3 client
-    s3_client = boto3.client(
-        's3',
-        region_name='af-south-1',
-        config=Config(signature_version=UNSIGNED)
-    )
+    # Use direct HTTPS URLs instead of boto3
+    base_url = "https://cct-ds-code-challenge-input-data.s3.af-south-1.amazonaws.com/"
     
     files_to_download = {
         'sr_hex_truncated.csv': 'data/sr_hex_truncated.csv',
@@ -31,18 +28,18 @@ def download_data_files():
     for s3_key, local_path in files_to_download.items():
         try:
             start_time = time.time()
-            # Remove existing file if it exists
-            if os.path.exists(local_path):
-                os.remove(local_path)
-            s3_client.download_file(
-                'cct-ds-code-challenge-input-data',
-                s3_key,
-                local_path
-            )
+            url = base_url + s3_key
+            response = requests.get(url)
+            response.raise_for_status()
+            
+            with open(local_path, 'wb') as f:
+                f.write(response.content)
+            
             end_time = time.time()
             print(f"Downloaded {s3_key} in {end_time - start_time:.2f} seconds")
         except Exception as e:
             print(f"Failed to download {s3_key}: {e}")
+            
 def simulate_s3_select():
     """
     Simulate S3 SELECT functionality by loading the GeoJSON file locally
