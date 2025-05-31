@@ -82,8 +82,8 @@ This generates:
 
 Note: When you run the visualization script, it will first display static plots in your Python environment. The interactive maps (heatmap and choropleth) are saved as HTML files in the project directory:
 
-- `data/bellville_service_requests_heatmap.html
-- `data/bellville_h3_choropleth_map.html
+- `data/bellville_service_requests_heatmap.html`
+- `data/bellville_h3_choropleth_map.html`
 
 Open these HTML files in your web browser to view the interactive maps.
 
